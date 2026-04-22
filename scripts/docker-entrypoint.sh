@@ -31,8 +31,8 @@ fi
 # operator can redeem it via web.
 if [ "${PAPERCLIP_DEPLOYMENT_MODE}" = "authenticated" ] && [ -n "${DATABASE_URL}" ]; then
     echo "[entrypoint] Checking bootstrap admin state..."
-    if [ -f /app/scripts/bootstrap-admin-if-needed.ts ]; then
-        gosu node sh -c "cd /app && node --import ./server/node_modules/tsx/dist/loader.mjs scripts/bootstrap-admin-if-needed.ts" || \
+    if [ -f /app/server/scripts/bootstrap-admin-if-needed.ts ]; then
+        gosu node sh -c "cd /app/server && node --import ./node_modules/tsx/dist/loader.mjs scripts/bootstrap-admin-if-needed.ts" || \
             echo "[entrypoint] bootstrap-admin script failed (non-fatal, continuing)"
     fi
 fi
